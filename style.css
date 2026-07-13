@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #ffffff;
+    color: #333333;
+    line-height: 1.7;
+}
+
+header {
+    border-bottom: 1px solid #e5e7eb;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    max-width: 1150px;
+    margin: auto;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #12355b;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #12355b;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #12355b;
+    outline-offset: 3px;
+}
+
+.hero {
+    max-width: 1150px;
+    margin: auto;
+    padding: 70px 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hero h2 {
+    font-size: 42px;
+    line-height: 1.2;
+    color: #12355b;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+.hero-box {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 220px));
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.hero-box div {
+    border-left: 3px solid #12355b;
+    padding-left: 15px;
+    min-height: 90px;
+}
+
+.hero-box h3 {
+    color: #12355b;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.hero-box p {
+    font-size: 15px;
+    color: #555;
+    margin: 0;
+}
+
+main {
+    max-width: 1050px;
+    margin: auto;
+    padding: 20px 25px;
+}
+
+section {
+    margin-bottom: 70px;
+}
+
+section h2 {
+    color: #12355b;
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+section h3 {
+    color: #12355b;
+    margin-bottom: 15px;
+}
+
+section p {
+    margin-bottom: 18px;
+}
+
+.gene-card {
+    border-top: 1px solid #ddd;
+    padding: 30px 0;
+}
+
+.gene-card h3 {
+    font-size: 24px;
+}
+
+.gene-card p {
+    max-width: 850px;
+}
+
+.graph-card {
+    margin: 60px 0;
+}
+
+.graph-card h3 {
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.graph-card img {
+    display: block;
+    width: 85%;
+    max-width: 850px;
+    margin: auto;
+    border: 1px solid #ddd;
+}
+
+.caption {
+    text-align: center;
+    max-width: 800px;
+    margin: 15px auto;
+    color: #666;
+    font-size: 15px;
+    font-style: italic;
+}
+
+a {
+    color: #12355b;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#references ul {
+    margin-left: 25px;
+}
+
+#references li {
+    margin-bottom: 10px;
+}
+
+footer {
+    border-top: 1px solid #ddd;
+    text-align: center;
+    padding: 25px;
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 800px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .hero-box {
+        grid-template-columns: 1fr;
+    }
+
+    .graph-card img {
+        width: 100%;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+nav a.active {
+    color: #12355b;
+    font-weight: 600;
+}
+.graph-card img {
+    cursor: zoom-in;
+}
+
+.image-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+    transition: 0.2s;
+}
+
+.image-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    background: white;
+}
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 10px;
+    background: white;
+    padding: 10px 15px;
+    border: 1px solid #12355b;
+    z-index: 200;
+}
+
+.skip-link:focus {
+    left: 10px;
+}
+.graph-card img {
+    cursor: zoom-in;
+}
+.graph-card {
+    scroll-margin-top: 100px;
+}

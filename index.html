@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="A bioinformatics project analyzing gene expression differences between LUAD tumor and normal lung samples using TCGA RNA sequencing data.">
+
+<title>LUAD Gene Expression Analysis</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+<body>
+
+
+<a class="skip-link" href="#overview">
+Skip to main content
+</a>
+
+
+
+<header>
+
+<nav aria-label="Main navigation">
+
+
+<h1>
+LUAD Gene Expression Analysis
+</h1>
+
+
+<ul>
+
+<li><a href="#overview">Overview</a></li>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#genes">Genes</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#discussion">Discussion</a></li>
+
+</ul>
+
+
+</nav>
+
+</header>
+
+
+
+
+
+<section class="hero">
+
+
+<div class="hero-text">
+
+
+<h2>
+Analyzing Gene Expression Patterns in Lung Adenocarcinoma (LUAD)
+</h2>
+
+
+<p>
+A bioinformatics project comparing gene expression differences between LUAD
+tumor samples and normal lung tissue using RNA sequencing data from The Cancer
+Genome Atlas (TCGA).
+</p>
+
+
+</div>
+
+
+
+
+<div class="hero-box">
+
+
+<div>
+
+<h3>
+Dataset
+</h3>
+
+<p>
+TCGA-LUAD RNA sequencing data
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h3>
+Samples
+</h3>
+
+<p>
+594 total samples<br>
+535 tumor, 59 normal
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h3>
+Genes Analyzed
+</h3>
+
+<p>
+60,600 genes
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<main>
+
+
+
+
+
+<section id="overview">
+
+
+<h2>
+Project Overview
+</h2>
+
+
+<p>
+Lung adenocarcinoma (LUAD) is one of the most common forms of lung cancer.
+Cancer cells often have different patterns of gene activity compared with
+healthy cells. Studying these differences can help researchers understand
+how tumors develop.
+</p>
+
+
+<p>
+In this project, I analyzed RNA sequencing data from The Cancer Genome Atlas
+(TCGA) to compare gene expression between LUAD tumor samples and normal lung
+samples. The goal was to identify genes that showed large differences in
+activity and determine whether those differences were statistically significant.
+</p>
+
+
+<p>
+The analysis was completed using Python. I processed the dataset, performed
+statistical testing, applied FDR correction, and created visualizations to
+examine patterns in gene expression.
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section id="dataset">
+
+
+<h2>
+Dataset
+</h2>
+
+
+<p>
+The data used in this project came from the UCSC Xena Browser using the
+TCGA-LUAD RNA sequencing dataset.
+</p>
+
+
+<p>
+The dataset contained <strong>594 samples</strong> used in this analysis:
+</p>
+
+
+<ul>
+
+<li>
+535 LUAD tumor samples
+</li>
+
+<li>
+59 normal lung samples
+</li>
+
+</ul>
+
+
+<p>
+Each sample contained expression measurements for approximately 60,600 genes.
+RNA sequencing measures how much RNA is produced from each gene, which gives
+an estimate of how active that gene is in a sample.
+</p>
+
+
+<p>
+The expression values were reported as log2(FPKM+1). The log transformation
+reduces the effect of extremely large values and makes differences between
+samples easier to compare.
+</p>
+
+
+<p>
+Because tumor samples greatly outnumbered normal samples, statistical testing
+was used to determine whether differences were likely caused by real
+biological changes instead of random variation.
+</p>
+
+
+</section>
+<section id="methods">
+
+<h2>Methods</h2>
+
+
+<p>
+The analysis was completed in Python using data analysis and bioinformatics libraries. The workflow included organizing the dataset, comparing tumor and normal samples, performing statistical testing, correcting for multiple testing, and creating visualizations.
+</p>
+
+
+<p>
+First, the samples were separated into two groups: LUAD tumor samples and normal lung samples. For each gene, the average expression level was calculated for both groups to compare differences in gene activity.
+</p>
+
+
+<p>
+The difference in expression between tumor and normal samples was measured using log2 fold change. Positive values represented genes with higher expression in tumor samples, while negative values represented genes with lower expression.
+</p>
+
+
+<p>
+To test whether the differences were statistically significant, a two-sample Welch's t-test was performed for each gene. Welch's t-test was used because the tumor and normal groups had different sample sizes and may have different levels of variation.
+</p>
+
+
+<p>
+Because thousands of genes were tested at the same time, the Benjamini-Hochberg False Discovery Rate (FDR) correction was applied. This reduces the chance of identifying genes as significant by random chance.
+</p>
+
+
+<p>
+Genes were considered statistically significant when they had an adjusted p-value (FDR) below 0.05. Significant genes were ranked based on their log2 fold change and statistical significance to identify genes with the strongest differences between LUAD tumor and normal samples.
+</p>
+
+
+<p>
+The final results were displayed using graphs showing expression changes, statistical significance, sample differences, and expression patterns of selected genes.
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section id="genes">
+
+
+<h2>Important Genes Identified</h2>
+
+
+<p>
+After completing the statistical analysis, six genes were selected because they showed some of the strongest expression differences between LUAD tumor and normal samples.
+</p>
+
+
+<p>
+The values below come directly from my analysis. Log2 fold change shows the size of the expression difference, fold change shows the difference on a regular scale, and FDR shows the adjusted statistical significance after correcting for thousands of tests.
+</p>
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>LCAL1</h3>
+
+
+<p>
+LCAL1 showed the largest fold change among the selected genes, with about 44.4 times higher expression in LUAD tumor samples compared with normal lung samples.
+</p>
+
+
+<p>
+My analysis found a log2 fold change of 5.47 and an FDR of 1.04 × 10⁻⁸¹, showing a very strong statistical difference between tumor and normal samples.
+</p>
+
+
+<p>
+LCAL1 is a long non-coding RNA, meaning it does not produce a protein but may influence how other genes are regulated. Previous research has connected LCAL1 with cancer-related processes, making its strong increase in this dataset an interesting finding.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>MAGEA3</h3>
+
+
+<p>
+MAGEA3 showed one of the strongest increases in expression between LUAD tumor and normal samples.
+</p>
+
+
+<p>
+The analysis found a log2 fold change of 5.45, a fold change of 43.84, and an FDR of 4.48 × 10⁻²⁹.
+</p>
+
+
+<p>
+MAGEA3 belongs to a group of genes called cancer-testis antigens. These genes are usually inactive in most normal tissues but can become active in certain cancers. Because of this pattern, MAGEA3 has been studied as a possible target for cancer treatments.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>PRAME</h3>
+
+
+<p>
+PRAME showed a large difference between LUAD tumor and normal samples and was one of the strongest genes identified.
+</p>
+
+
+<p>
+PRAME had a log2 fold change of 5.16, a fold change of 35.66, and an FDR of 4.62 × 10⁻⁶².
+</p>
+
+
+<p>
+PRAME has been studied in several cancers because of its connection with tumor-related processes and changes in cell growth regulation. Its strong increase in LUAD samples matched patterns reported in previous research.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>FEZF1-AS1</h3>
+
+
+<p>
+FEZF1-AS1 was another highly increased gene in LUAD tumor samples.
+</p>
+
+
+<p>
+The analysis found a log2 fold change of 4.76, a fold change of 27.13, and an FDR of 2.50 × 10⁻⁸².
+</p>
+
+
+<p>
+FEZF1-AS1 is a long non-coding RNA that has been connected with cancer-related pathways. Its strong difference between tumor and normal samples made it one of the important genes identified from the dataset.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>HOXB9</h3>
+
+
+<p>
+HOXB9 showed a strong increase in expression in LUAD tumor samples compared with normal lung tissue.
+</p>
+
+
+<p>
+The analysis found a log2 fold change of 4.60, a fold change of 24.33, and an FDR of 4.44 × 10⁻³⁸.
+</p>
+
+
+<p>
+HOXB9 is part of the HOX family of genes, which help regulate development and cell behavior. Previous research has connected changes in HOXB9 expression with tumor growth and cancer progression.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="gene-card">
+
+
+<h3>AFAP1-AS1</h3>
+
+
+<p>
+AFAP1-AS1 showed one of the strongest statistical signals in the entire analysis.
+</p>
+
+
+<p>
+The gene had a log2 fold change of 4.59, a fold change of 24.03, and an FDR of 6.31 × 10⁻¹³⁰.
+</p>
+
+
+<p>
+AFAP1-AS1 is a long non-coding RNA that has been studied for its possible role in processes such as cell movement and tumor development.
+</p>
+
+
+</div>
+
+
+</section>
+<section id="results">
+
+
+<h2>Analysis Results</h2>
+
+
+<p>
+The analysis identified many genes that showed different expression levels between LUAD tumor samples and normal lung samples. The graphs below show the main patterns found after statistical testing and comparison of gene expression.
+</p>
+
+
+
+
+
+
+<div class="graph-card">
+
+
+<h3>Top Overexpressed Genes</h3>
+
+
+<img src="images/top10.png" 
+alt="Bar chart showing the top overexpressed genes in LUAD tumor samples"
+loading="lazy">
+
+
+<p class="caption">
+This graph shows genes with the largest increases in expression in LUAD tumor samples compared with normal lung samples. Several of the strongest genes identified in the analysis, including LCAL1, MAGEA3, and PRAME, showed large expression differences.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="graph-card">
+
+
+<h3>Volcano Plot</h3>
+
+
+<img src="images/volcano.png"
+alt="Volcano plot showing log2 fold change and statistical significance of genes"
+loading="lazy">
+
+
+<p class="caption">
+The volcano plot compares the size of gene expression changes with statistical significance. Genes farther to the left or right had larger expression differences, while genes higher on the graph had stronger statistical evidence. Many genes showed significant changes after FDR correction.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="graph-card">
+
+
+<h3>Expression Heatmap</h3>
+
+
+<img src="images/heatmap.png"
+alt="Heatmap showing expression levels of selected genes across samples"
+loading="lazy">
+
+
+<p class="caption">
+The heatmap shows expression patterns of selected genes across individual samples. The selected genes generally showed higher expression patterns in LUAD tumor samples compared with normal samples, supporting the differences found in the statistical analysis.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="graph-card">
+
+
+<h3>PCA Plot</h3>
+
+
+<img src="images/pca.png"
+alt="PCA plot showing separation between LUAD tumor and normal samples"
+loading="lazy">
+
+
+<p class="caption">
+The PCA plot shows how samples group based on their overall gene expression patterns. Tumor and normal samples formed different groups, suggesting that LUAD samples have distinct gene expression profiles compared with normal lung tissue.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="graph-card">
+
+
+<h3>Gene Expression Distribution</h3>
+
+
+<img src="images/distribution.png"
+alt="Histogram showing distribution of gene expression changes"
+loading="lazy">
+
+
+<p class="caption">
+The distribution graph shows the range of expression changes across all analyzed genes. Most genes had smaller changes, while a smaller number showed very large increases or decreases in expression.
+</p>
+
+
+</div>
+
+
+
+</section>
+<section id="discussion">
+
+
+<h2>Discussion</h2>
+
+
+<p>
+This analysis identified several genes that showed strong differences between LUAD tumor samples and normal lung samples. The selected genes were chosen because they had large expression changes and strong statistical evidence after testing thousands of genes.
+</p>
+
+
+<p>
+The strongest expression increases were found in genes such as LCAL1, MAGEA3, PRAME, FEZF1-AS1, HOXB9, and AFAP1-AS1. For example, LCAL1 showed the largest fold change among the selected genes with approximately a 44.4-fold increase in tumor samples, while MAGEA3 showed a similarly strong increase of approximately 43.8-fold. These large differences suggest that these genes may have important connections with LUAD biology.
+</p>
+
+
+<p>
+Several of the identified genes have also been studied in previous cancer research. MAGEA3 and PRAME have been investigated because of their connection with cancer-related activity, while genes such as AFAP1-AS1 and FEZF1-AS1 have been studied for their possible roles in tumor development and regulation.
+</p>
+
+
+<p>
+Although these results show strong differences in gene expression, this analysis only shows an association between gene activity and LUAD. Additional experiments would be needed to determine whether these genes directly affect cancer development.
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="limitations">
+
+
+<h2>Limitations</h2>
+
+
+<p>
+This project analyzed one publicly available dataset from TCGA. While TCGA provides a large number of samples, testing the identified genes in additional LUAD datasets would help determine whether the same patterns appear consistently.
+</p>
+
+
+<p>
+The analysis focused only on gene expression. Cancer is affected by many other factors, including DNA mutations, protein activity, and interactions between cells. Including additional types of biological data could provide a more complete understanding of these genes.
+</p>
+
+
+<p>
+The results identify genes that are associated with LUAD, but further laboratory research would be needed to understand their exact biological functions.
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="conclusion">
+
+
+<h2>Conclusion</h2>
+
+
+<p>
+This project used bioinformatics methods to analyze gene expression differences between LUAD tumor samples and normal lung samples.
+</p>
+
+
+<p>
+Using Python, statistical testing, and data visualization, I identified genes with significant differences in expression between the two groups. Six genes stood out because they showed large expression changes and strong statistical evidence after FDR correction.
+</p>
+
+
+<p>
+The results demonstrate how computational approaches can be used to analyze large biological datasets and identify patterns that may help researchers better understand cancer biology.
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="references">
+
+
+<h2>References</h2>
+
+
+<ul>
+
+
+<li>
+The Cancer Genome Atlas Program. National Cancer Institute.
+<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga" target="_blank">
+https://www.cancer.gov/ccg/research/genome-sequencing/tcga
+</a>
+</li>
+
+
+<li>
+Goldman, Mary J., et al. "Visualizing and Interpreting Cancer Genomics Data via the Xena Platform."
+Nature Biotechnology, 2020.
+<a href="https://doi.org/10.1038/s41587-020-0546-8" target="_blank">
+https://doi.org/10.1038/s41587-020-0546-8
+</a>
+</li>
+
+
+<li>
+"Cancer Testis Antigen MAGEA3 in Serum and Serum-Derived Exosomes Serves as a Promising Biomarker in Lung Adenocarcinoma."
+Journal of Thoracic Disease, 2024.
+</li>
+
+
+<li>
+"DNA Hypomethylation-Activated PRAME Drives Early-Stage Lung Adenocarcinoma Recurrence."
+Cell Death Discovery, 2025.
+</li>
+
+
+<li>
+"Down-Regulation of Long Non-Coding RNA AFAP1-AS1 Inhibits Tumor Cell Growth and Invasion in Lung Adenocarcinoma."
+Cellular Physiology and Biochemistry, 2017.
+</li>
+
+
+<li>
+"WNT/TCF Signaling through LEF1 and HOXB9 Mediates Lung Adenocarcinoma Metastasis."
+Cell, 2009.
+</li>
+
+
+<li>
+"lncRNA FEZF1-AS1 Is Associated With Prognosis in Lung Adenocarcinoma."
+Oncology Letters, 2018.
+</li>
+
+
+<li>
+LCAL1 cancer research.
+PubMed.
+</li>
+
+
+</ul>
+
+
+</section>
+
+
+</main>
+
+
+
+
+
+<footer>
+
+<p>
+LUAD Gene Expression Analysis | Bioinformatics Research Project
+</p>
+
+</footer>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
